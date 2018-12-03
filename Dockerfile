@@ -1,4 +1,4 @@
-FROM land007/node:latest
+FROM land007/golang-web:latest
 
 MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 
