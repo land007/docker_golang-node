@@ -27,8 +27,8 @@ ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
 
-#land007/debian_node-rtsp-stream
-RUN . $HOME/.nvm/nvm.sh && npm install node-rtsp-stream
+#land007/debian_golang-node
+RUN . $HOME/.nvm/nvm.sh && npm install golang-node
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
 RUN . $HOME/.nvm/nvm.sh && npm install -g http-server
 
@@ -39,7 +39,7 @@ ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/
 RUN ls /
 RUN which http-server
 RUN ls /node/node_modules
-ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /node/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
+ADD node_modules/golang-node/lib/mpeg1muxer.js /node/node_modules/golang-node/lib/mpeg1muxer.js
 ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
@@ -53,8 +53,8 @@ RUN . $HOME/.nvm/nvm.sh && npm install express
 #land007/node-socket.io:latest
 RUN . $HOME/.nvm/nvm.sh && npm install socket.io
 
-#docker pull land007/node-rtsp-stream:latest; docker kill debian_node-rtsp-stream; docker rm debian_node-rtsp-stream; docker run -it --restart always --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1024x576" land007/node-rtsp-stream:latest
-#docker kill debian_node-rtsp-stream; docker kill debian_node-rtsp-stream1; docker rm debian_node-rtsp-stream1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=880x660" land007/node-rtsp-stream:latest
-#docker kill debian_node-rtsp-stream; docker kill debian_node-rtsp-stream1; docker rm debian_node-rtsp-stream1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=890x668" land007/node-rtsp-stream:latest
-#docker kill debian_node-rtsp-stream; docker kill debian_node-rtsp-stream1; docker rm debian_node-rtsp-stream1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1188x668" land007/node-rtsp-stream:latest
-#docker kill debian_node-rtsp-stream; docker kill debian_node-rtsp-stream1; docker rm debian_node-rtsp-stream1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_node-rtsp-stream1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1188x668" land007/node-rtsp-stream:latest
+#docker pull land007/golang-node:latest; docker kill debian_golang-node; docker rm debian_golang-node; docker run -it --restart always --privileged -p 8000:8000 -p 8100:8100 --name debian_golang-node -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1024x576" land007/golang-node:latest
+#docker kill debian_golang-node; docker rm debian_golang-node1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_golang-node1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=880x660" land007/golang-node:latest
+#docker kill debian_golang-node; docker rm debian_golang-node1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_golang-node1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=890x668" land007/golang-node:latest
+#docker kill debian_golang-node; docker rm debian_golang-node1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_golang-node1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1188x668" land007/golang-node:latest
+#docker kill debian_golang-node; docker rm debian_golang-node1; docker run -it --privileged -p 8000:8000 -p 8100:8100 --name debian_golang-node1 -e "RTSPURL=rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream" -e "WH=1188x668" land007/golang-node:latest
