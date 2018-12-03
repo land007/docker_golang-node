@@ -29,22 +29,22 @@ RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
 
 #land007/node-rtsp-stream
+MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
+
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
-
-ADD node /node
-
-RUN chmod +x /node/start_webserver.sh
-ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/
-
 RUN . $HOME/.nvm/nvm.sh && cd /node && npm install --save node-rtsp-stream && npm install -g http-server
-RUN ls /node/node_modules
+RUN ls /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules/
+ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
+ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/
 RUN which http-server
 
-ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /node/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
+ADD node /node
+RUN chmod +x /node/start_webserver.sh
 ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
-RUN rm -rf /node_ && mv /node /node_
+RUN rm -rf /node_
+RUN mv /node /node_
 ENV RTSPURL=rtsp://admin:abcd1234@192.168.0.234:554/cam/realmonitor?channel=1&subtype=1
 ENV WH=1024x576
 
