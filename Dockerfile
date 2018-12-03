@@ -29,8 +29,6 @@ RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
 
 #land007/node-rtsp-stream
-MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
-
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
 RUN . $HOME/.nvm/nvm.sh && cd /node && npm install --save node-rtsp-stream && npm install -g http-server
 RUN ls /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules/
