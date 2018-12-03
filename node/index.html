@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jsmpeg.min.js"></script>
+</head>
+<body>
+<canvas id="canvas" width="480" height="270"></canvas>
+<script type="text/javascript">
+//var client = new WebSocket('ws://127.0.0.1:9999');
+var loc = window.location, new_uri;
+if (loc.protocol === "https:") {
+    new_uri = "wss:";
+} else {
+    new_uri = "ws:";
+}
+//new_uri += "//" + loc.host;
+//new_uri += loc.pathname + "/to/ws";
+new_uri += "//" + loc.hostname;
+new_uri += ":" + (parseInt(window.location.port) + 100);
+console.log(new_uri);//'ws://192.168.99.100:8100'
+var player = new JSMpeg.Player(new_uri, {
+    canvas: canvas,
+	//videoBufferSize: 2 * 512 * 1024
+});
+</script>
+</body>
+</html>
