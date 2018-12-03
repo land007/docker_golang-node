@@ -28,8 +28,8 @@ ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
 
-#land007/golang-node
-RUN . $HOME/.nvm/nvm.sh && npm install golang-node
+#land007/node-rtsp-stream
+RUN . $HOME/.nvm/nvm.sh && npm install node-rtsp-stream
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
 RUN . $HOME/.nvm/nvm.sh && npm install -g http-server
 
@@ -40,7 +40,7 @@ ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/
 RUN ls /
 RUN which http-server
 RUN ls /node/node_modules
-ADD node_modules/golang-node/lib/mpeg1muxer.js /node/node_modules/golang-node/lib/mpeg1muxer.js
+ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /node/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
 ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
