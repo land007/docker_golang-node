@@ -1,9 +1,18 @@
-Stream = require('node-rtsp-stream');
+const cluster = require('cluster');
 
-var RTSPURL =  process.env['RTSPURL'] || 'rtsp://admin:Admin123@192.168.0.241:554/h264/ch1/sub/av_stream';//摄像机RTSPURL  
+//根据CPU多核心启动多进程运行日志
+var name = __dirname + '/server.js';
 
-stream = new Stream({
-    name: 'name',
-    streamUrl: RTSPURL,
-    wsPort: 8100
+cluster.setupMaster({
+	exec : name,
+	args : process.argv,// ["8000"],
+	silent : false
 });
+var cpus = require('os').cpus();
+var length = cpus.length;
+var workers = {};
+for ( var i = 0; i < length; i++) {
+	var worker = cluster.fork();
+	worker['workerId'] = worker.id;
+	workers[worker['workerId']] = worker;
+}
