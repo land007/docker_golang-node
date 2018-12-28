@@ -22,9 +22,8 @@ ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin
 #land007/node-ffmpeg
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
 #land007/node-rtsp-stream
-RUN . $HOME/.nvm/nvm.sh && cd /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/ && npm install node-rtsp-stream
-RUN ls /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules/
-ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules/node-rtsp-stream/lib/mpeg1muxer.js
+RUN . $HOME/.nvm/nvm.sh && npm install node-rtsp-stream
+ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /node_modules/node-rtsp-stream/lib/mpeg1muxer.js
 ENV WH=1024x576
 ENV QUALITY=1
 #land007/node-canvas
@@ -37,7 +36,7 @@ RUN sed -i 's/\r$//' /check.sh && chmod a+x /check.sh
 # Define working directory.
 #RUN mkdir /node
 ADD node /node
-RUN ln -s $HOME/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules /node
+#RUN ln -s $HOME/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/lib/node_modules /node
 RUN sed -i 's/\r$//' /node/start.sh && chmod a+x /node/start.sh
 RUN ln -s /node ~/ && ln -s /node /home/land007
 RUN mv /node /node_
