@@ -22,7 +22,7 @@ ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin
 #land007/node-ffmpeg
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
 #land007/node-rtsp-stream
-RUN . $HOME/.nvm/nvm.sh && npm install node-rtsp-stream
+RUN . $HOME/.nvm/nvm.sh && npm install node-rtsp-stream rtsp-stream-list
 ADD node_modules/node-rtsp-stream/lib/mpeg1muxer.js /node_modules/node-rtsp-stream/lib/mpeg1muxer.js
 ENV WH=1024x576
 ENV QUALITY=1
