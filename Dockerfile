@@ -37,7 +37,7 @@ RUN sed -i 's/\r$//' /check.sh && chmod a+x /check.sh
 ADD node /node
 RUN sed -i 's/\r$//' /node/start.sh && chmod a+x /node/start.sh && \
 	ln -s /node ~/ && ln -s /node /home/land007 && \
-	mv /node /node_ && \
+	mv /node /node_
 #WORKDIR /node
 VOLUME ["/node"]
 
