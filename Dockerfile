@@ -1,4 +1,7 @@
-FROM land007/golang-web:latest
+#FROM land007/golang-web:latest
+FROM land007/l4t-golang-tensorflow:1.15.0
+#docker build -t land007/l4t-golang-node .
+#docker run --runtime nvidia --rm -it --name l4t-tfjs1 land007/l4t-golang-node:latest bash
 
 MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 
@@ -9,15 +12,19 @@ ENV NVM_DIR=/root/.nvm \
 #	SHIPPABLE_NODE_VERSION=v8.11.1
 #	SHIPPABLE_NODE_VERSION=v8.14.0
 #	SHIPPABLE_NODE_VERSION=v9.11.1
-	SHIPPABLE_NODE_VERSION=v9.11.2
+#
+#	SHIPPABLE_NODE_VERSION=v9.11.2
+#
 #	SHIPPABLE_NODE_VERSION=v10.13.0
 #	SHIPPABLE_NODE_VERSION=v10.14.1
-RUN . $HOME/.nvm/nvm.sh && nvm install $SHIPPABLE_NODE_VERSION && nvm alias default $SHIPPABLE_NODE_VERSION && nvm use default && cd / && npm init -y && npm install -g node-gyp supervisor http-server && npm install socket.io ws express http-proxy bagpipe pty.js chokidar request nodemailer await-signal log4js moment grpc @grpc/proto-loader mysql && \ 
+    SHIPPABLE_NODE_VERSION=v10.20.0
+RUN . $HOME/.nvm/nvm.sh && nvm install $SHIPPABLE_NODE_VERSION && nvm alias default $SHIPPABLE_NODE_VERSION && nvm use default && cd / && npm init -y && npm install -g node-gyp supervisor http-server && npm install socket.io ws express http-proxy bagpipe chokidar request nodemailer await-signal log4js moment grpc @grpc/proto-loader mysql && \
 #RUN . $HOME/.nvm/nvm.sh && nvm install $SHIPPABLE_NODE_VERSION && nvm alias default $SHIPPABLE_NODE_VERSION && nvm use default && npm install gulp babel  jasmine mocha serial-jasmine serial-mocha aws-test-worker -g && \
 #	. $HOME/.nvm/nvm.sh && cd / && npm install pty.js && \
 	. $HOME/.nvm/nvm.sh && which node
 #	ln -s /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/node /usr/bin/node && \
 #	ln -s /root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin/supervisor /usr/bin/supervisor && \
+ADD pty.js /node_modules/pty.js
 ENV PATH $PATH:/root/.nvm/versions/node/$SHIPPABLE_NODE_VERSION/bin
 #land007/node-ffmpeg
 RUN apt-get update && apt-get install -y ffmpeg && apt-get clean && \
