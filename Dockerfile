@@ -1,5 +1,6 @@
 #FROM land007/golang-web:latest
-FROM land007/l4t-golang-tensorflow:1.15.0
+#FROM land007/l4t-golang-tensorflow:1.15.0
+FROM land007/golang-web-old:18.04
 #docker build -t land007/l4t-golang-node .
 #docker run --runtime nvidia --rm -it --name l4t-tfjs1 land007/l4t-golang-node:latest bash
 
